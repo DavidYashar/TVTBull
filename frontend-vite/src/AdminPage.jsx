@@ -159,7 +159,7 @@ export default function AdminPage() {
           </div>
           <div className="admin-group" style={{ borderColor: 'rgba(210,153,34,.3)', background: 'rgba(210,153,34,.04)' }}>
             <p style={{ fontSize: 13, marginBottom: 8, color: 'var(--warning)' }}>Provide Liquidity (MAINNET ONLY)</p>
-            <p style={{ fontSize: 11, color: 'var(--text-dim)', marginBottom: 12 }}>Uniswap V2 is not deployed on testnet. LP creation works only on Robinhood Chain mainnet (chain 4663).</p>
+            <p style={{ fontSize: 11, color: 'var(--text-dim)', marginBottom: 12 }}>LP creation works on Robinhood Chain mainnet (chain 4663).</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 12 }}>
               <input className="admin-input" type="number" value={lp.tokenAmt} onChange={e => setLp({ ...lp, tokenAmt: e.target.value })} placeholder="Token amount" disabled />
               <span style={{ fontSize: 11, color: 'var(--text-dim)', marginTop: -6 }}>Treasury: {Number(data.treasuryToken).toLocaleString()} TVT</span>
