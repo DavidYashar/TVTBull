@@ -34,7 +34,7 @@ export default function AdminPage() {
         contractUSDG: ethers.formatUnits(contractBal, USDG_DECIMALS),
         treasuryToken: ethers.formatUnits(tTok, 6),
         treasuryUSDG: ethers.formatUnits(tUSDG, USDG_DECIMALS),
-        deployerTVT: ethers.formatUnits(dVTB, 6),
+        deployerTVT: ethers.formatUnits(dTVT, 6),
         totalRaised: (batches * 2).toFixed(2),
       })
     } catch (err) { console.error(err) }
