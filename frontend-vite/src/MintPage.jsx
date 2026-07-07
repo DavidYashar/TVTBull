@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useAccount, useWalletClient } from 'wagmi'
 import { ethers } from 'ethers'
-import { readProvider, TOKEN_ADDRESS, USDG_ADDRESS, USDG_DECIMALS, TOKEN_ABI, ERC20_ABI, EXPLORER_API_KEY } from './constants'
+import { readProvider, TOKEN_ADDRESS, USDG_ADDRESS, USDG_DECIMALS, TOKEN_ABI, ERC20_ABI, EXPLORER_API_KEY, EXPLORER_API_URL, EXPLORER_URL } from './constants'
 
 export default function MintPage() {
   const { address, isConnected } = useAccount()
@@ -61,7 +61,7 @@ export default function MintPage() {
       setExcluded(excludedList)
 
       // Fetch holders from Blockscout
-      const res = await fetch(`https://explorer.chain.robinhood.com/api/v2/tokens/${TOKEN_ADDRESS}/holders?apikey=${EXPLORER_API_KEY}`)
+      const res = await fetch(`${EXPLORER_API_URL}/tokens/${TOKEN_ADDRESS}/holders?apikey=${EXPLORER_API_KEY}`)
       const json = await res.json()
       const items = (json.items || []).map(h => {
         const addr = typeof h.address === 'string' ? h.address : h.address?.hash || ''
@@ -176,7 +176,7 @@ export default function MintPage() {
                       <td>{h.balance.toLocaleString()}</td>
                       <td>{Math.floor(h.balance / 10_000)}</td>
                       <td>{stats.mintableTotal > 0 ? (h.balance / stats.mintableTotal * 100).toFixed(1) : '0.0'}%</td>
-                      <td>{h.txHash ? <a href={`https://explorer.chain.robinhood.com/tx/${h.txHash}`} target="_blank" rel="noreferrer" style={{ color: 'var(--gold)', textDecoration: 'none', fontSize: 12 }}>View</a> : '-'}</td>
+                      <td>{h.txHash ? <a href={`${EXPLORER_URL}/tx/${h.txHash}`} target="_blank" rel="noreferrer" style={{ color: 'var(--gold)', textDecoration: 'none', fontSize: 12 }}>View</a> : '-'}</td>
                     </tr>
                   ))}
               </tbody>

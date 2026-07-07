@@ -4,6 +4,8 @@ import { http } from 'viem'
 import { defineChain } from 'viem'
 
 // Define Robinhood Chain Mainnet
+import { EXPLORER_URL } from './constants'
+
 const robinhoodMainnet = defineChain({
   id: 4663,
   name: 'Robinhood Chain',
@@ -12,7 +14,7 @@ const robinhoodMainnet = defineChain({
     default: { http: ['https://rpc.mainnet.chain.robinhood.com'] },
   },
   blockExplorers: {
-    default: { name: 'Blockscout', url: 'https://explorer.chain.robinhood.com' },
+    default: { name: 'Blockscout', url: EXPLORER_URL },
   },
 })
 

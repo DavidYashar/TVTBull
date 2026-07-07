@@ -7,7 +7,7 @@ import MyMintsPage from './MyMintsPage'
 import AdminPage from './AdminPage'
 import GovernancePage from './GovernancePage'
 import HomePage from './HomePage'
-import { readProvider, TOKEN_ADDRESS, TOKEN_ABI, USDG_ADDRESS, ERC20_ABI } from './constants'
+import { readProvider, TOKEN_ADDRESS, TOKEN_ABI, USDG_ADDRESS, ERC20_ABI, EXPLORER_URL } from './constants'
 
 export default function App() {
   const { address } = useAccount()
@@ -114,7 +114,7 @@ export default function App() {
       <footer className="app-footer">
         <span>Robinhood Chain</span>
         <span className="footer-sep">|</span>
-        <a href="https://explorer.chain.robinhood.com" target="_blank" rel="noreferrer">Explorer</a>
+        <a href={`${EXPLORER_URL}/address/${TOKEN_ADDRESS}`} target="_blank" rel="noreferrer">Explorer</a>
         <span className="footer-sep">|</span>
         <a href="https://x.com/TVTBull" target="_blank" rel="noreferrer" className="footer-x">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style={{ verticalAlign: 'middle', marginRight: 4 }}>
