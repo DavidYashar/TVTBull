@@ -7,7 +7,7 @@ import MyMintsPage from './MyMintsPage'
 import AdminPage from './AdminPage'
 import GovernancePage from './GovernancePage'
 import HomePage from './HomePage'
-import { readProvider, TOKEN_ADDRESS, TOKEN_ABI, USDG_ADDRESS, ERC20_ABI, EXPLORER_URL } from './constants'
+import { readProvider, TOKEN_ADDRESS, TOKEN_ABI, USDG_ADDRESS, USDG_DECIMALS, ERC20_ABI, EXPLORER_URL } from './constants'
 
 export default function App() {
   const { address } = useAccount()
@@ -27,7 +27,7 @@ export default function App() {
         setBalances({
           eth: Number(ethers.formatEther(ethBal)).toFixed(4),
           tvt: Number(ethers.formatUnits(tvtBal, 6)).toLocaleString(),
-          usdg: Number(ethers.formatUnits(usdgBal, 18)).toLocaleString(),
+          usdg: Number(ethers.formatUnits(usdgBal, USDG_DECIMALS)).toLocaleString(),
         })
       })
     } catch { setIsAdmin(false) }

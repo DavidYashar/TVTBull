@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useAccount } from 'wagmi'
 import { ethers } from 'ethers'
-import { readProvider, TOKEN_ADDRESS, TOKEN_ABI } from './constants'
+import { readProvider, TOKEN_ADDRESS, TOKEN_ABI, USDG_DECIMALS } from './constants'
 
 export default function MyMintsPage() {
   const { address, isConnected } = useAccount()
@@ -39,7 +39,7 @@ export default function MyMintsPage() {
             const tokensVal = ev.args.tokens || ev.args[2] || 0n
             const costVal   = ev.args.costUSDC || ev.args[3] || 0n
             totalMinted += Number(ethers.formatUnits(tokensVal, 6))
-            totalSpent  += Number(ethers.formatUnits(costVal, 18))
+            totalSpent  += Number(ethers.formatUnits(costVal, USDG_DECIMALS))
           }
         } catch (e) { console.warn('Event chunk failed:', from, to, e.message) }
       }

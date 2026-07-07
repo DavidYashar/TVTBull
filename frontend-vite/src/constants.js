@@ -11,8 +11,8 @@ export const readProvider = new ethers.JsonRpcProvider(
 // Explorer API key (Blockscout Pro)
 export const EXPLORER_API_KEY = import.meta.env.VITE_EXPLORER_API_KEY
 
-// Blockscout hosted API base (chain 4663 = Robinhood mainnet)
-export const EXPLORER_API_URL = 'https://api.blockscout.com/4663/api/v2'
+// Blockscout explorer API (Robinhood Chain)
+export const EXPLORER_API_URL = 'https://robinhoodchain.blockscout.com/api/v2'
 
 // Explorer frontend for tx links
 export const EXPLORER_URL = 'https://robinhoodchain.blockscout.com'
