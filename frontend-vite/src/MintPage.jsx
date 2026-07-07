@@ -175,7 +175,7 @@ export default function MintPage() {
                       <td className="addr">{h.address.slice(0, 6)}...{h.address.slice(-4)}</td>
                       <td>{h.balance.toLocaleString()}</td>
                       <td>{Math.floor(h.balance / 10_000)}</td>
-                      <td>{stats.mintableTotal > 0 ? (h.balance / stats.mintableTotal * 100).toFixed(1) : '0.0'}%</td>
+                      <td>{stats.mintableTotal > 0 ? (h.balance / stats.mintableTotal * 100).toFixed(3) : '0.000'}%</td>
                       <td>{h.txHash ? <a href={`${EXPLORER_URL}/tx/${h.txHash}`} target="_blank" rel="noreferrer" style={{ color: 'var(--gold)', textDecoration: 'none', fontSize: 12 }}>View</a> : '-'}</td>
                     </tr>
                   ))}
