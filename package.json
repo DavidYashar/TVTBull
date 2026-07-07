@@ -1,0 +1,9 @@
+{
+  "name": "robinhood-token-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve frontend -l 3000",
+    "start": "npx serve frontend -l 3000"
+  }
+}

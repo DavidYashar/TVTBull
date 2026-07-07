@@ -1,0 +1,21 @@
+# Environment
+.env
+
+# Foundry
+broadcast/
+cache/
+out/
+
+# Dependencies
+node_modules/
+
+# Build output
+frontend-vite/dist/
+dist/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
