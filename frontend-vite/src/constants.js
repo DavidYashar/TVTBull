@@ -1,17 +1,23 @@
 import { ethers } from 'ethers'
 
-// Alchemy read provider — used ONLY for internal reads, never for MetaMask network config
+// All config values come from Vite env vars (frontend-vite/.env)
+// These are bundled at build time — NOT for secrets like private keys
+
+// Alchemy read provider
 export const readProvider = new ethers.JsonRpcProvider(
-  'https://robinhood-mainnet.g.alchemy.com/v2/LLcfShXkzvLwjEDQQgw0b'
+  import.meta.env.VITE_ALCHEMY_RPC_URL
 )
 
-// Deployed addresses (mainnet)
-export const TOKEN_ADDRESS = '0xdE7AD708D70D4c9d9b0A32dbd2FEd9fBFCCC85CE'
-export const USDG_ADDRESS  = '0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168'  // Official USDG on Robinhood mainnet
-export const USDG_DECIMALS = 6  // Real USDG has 6 decimals
+// Explorer API key
+export const EXPLORER_API_KEY = import.meta.env.VITE_EXPLORER_API_KEY
 
-// Uniswap V2 Router on Robinhood Chain MAINNET (for LP creation)
-export const UNISWAP_V2_ROUTER = '0x8bceaa40b9acdfaedf85adf4ff01f5ad6517937f'
+// Deployed addresses (mainnet)
+export const TOKEN_ADDRESS = import.meta.env.VITE_TOKEN_ADDRESS
+export const USDG_ADDRESS  = import.meta.env.VITE_USDG_ADDRESS
+export const USDG_DECIMALS = Number(import.meta.env.VITE_USDG_DECIMALS || 6)
+
+// Uniswap V2 Router on Robinhood Chain MAINNET
+export const UNISWAP_V2_ROUTER = import.meta.env.VITE_UNISWAP_V2_ROUTER
 
 // ABIs
 export const TOKEN_ABI = [

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useAccount, useWalletClient } from 'wagmi'
 import { ethers } from 'ethers'
-import { readProvider, TOKEN_ADDRESS, USDG_ADDRESS, USDG_DECIMALS, TOKEN_ABI, ERC20_ABI } from './constants'
+import { readProvider, TOKEN_ADDRESS, USDG_ADDRESS, USDG_DECIMALS, TOKEN_ABI, ERC20_ABI, EXPLORER_API_KEY } from './constants'
 
 export default function MintPage() {
   const { address, isConnected } = useAccount()
@@ -61,7 +61,7 @@ export default function MintPage() {
       setExcluded(excludedList)
 
       // Fetch holders from Blockscout
-      const res = await fetch(`https://explorer.chain.robinhood.com/api/v2/tokens/${TOKEN_ADDRESS}/holders`)
+      const res = await fetch(`https://explorer.chain.robinhood.com/api/v2/tokens/${TOKEN_ADDRESS}/holders?apikey=${EXPLORER_API_KEY}`)
       const json = await res.json()
       const items = (json.items || []).map(h => {
         const addr = typeof h.address === 'string' ? h.address : h.address?.hash || ''

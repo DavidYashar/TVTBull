@@ -216,17 +216,6 @@ h1, h2, h3, h4, h5, h6, .logo-text, .page-title, .tab-btn, .stat-box-value, .sta
   object-fit: cover;
 }
 
-
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  padding: 3px 10px;
-  letter-spacing: 0.08em;
-  background: #000;
-  color: #ffffff;
-  border: 1px solid #ccff00;
-}
-
 /* ─── Tabs (in header) ──────────────────────── */
 
 .tab-btn {
