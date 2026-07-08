@@ -39,7 +39,7 @@ export default function HomePage({ onStartMint }) {
             background: '#000', color: '#ffffff',
             border: '1px solid #ccff00', fontSize: 14, fontWeight: 700, marginBottom: 22
           }}>
-            ● Fair Launch · 1 Batch = 10,000 TVT
+            ● Fair Launch · 1 Batch = 20,000 TVT
           </div>
           <h1 style={{
             fontSize: 'clamp(32px, 5vw, 56px)', lineHeight: 0.95, letterSpacing: '-0.04em',

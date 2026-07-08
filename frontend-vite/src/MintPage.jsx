@@ -112,7 +112,7 @@ export default function MintPage() {
       }
       setStatus({ type: 'pending', message: 'Confirm mint...' })
       await (await token.mint()).wait()
-      setStatus({ type: 'success', message: 'Minted 10,000 TVT' })
+      setStatus({ type: 'success', message: 'Minted 20,000 TVT' })
       await refresh()
     } catch (err) { setStatus({ type: 'error', message: err.reason || err.message }) }
     setMinting(false)
@@ -132,7 +132,7 @@ export default function MintPage() {
       <div style={{ marginBottom: 16 }}>
         <p style={{ fontSize: 12, color: 'var(--text-dim)', marginBottom: 8 }}>1 BATCH PER TRANSACTION</p>
         <div style={{ display: 'flex', alignItems: 'center', gap: 0 }}>
-          <span style={{ textAlign: 'center', fontSize: 24, fontWeight: 700, fontFamily: 'SF Mono, monospace', color: 'var(--gold)' }}>10,000 TVT</span>
+          <span style={{ textAlign: 'center', fontSize: 24, fontWeight: 700, fontFamily: 'SF Mono, monospace', color: 'var(--gold)' }}>20,000 TVT</span>
         </div>
       </div>
 
