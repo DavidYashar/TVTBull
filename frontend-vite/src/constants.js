@@ -19,6 +19,7 @@ export const EXPLORER_URL = 'https://robinhoodchain.blockscout.com'
 
 // Deployed addresses (mainnet)
 export const TOKEN_ADDRESS = import.meta.env.VITE_TOKEN_ADDRESS
+export const OLD_TOKEN_ADDRESS = '0xdE7AD708D70D4c9d9b0A32dbd2FEd9fBFCCC85CE'  // Old TVT contract for airdrop
 export const USDG_ADDRESS  = import.meta.env.VITE_USDG_ADDRESS
 export const USDG_DECIMALS = Number(import.meta.env.VITE_USDG_DECIMALS || 6)
 
@@ -50,6 +51,8 @@ export const TOKEN_ABI = [
   'function setMintPaused(bool paused)',
   'function burnUnminted()',
   'function withdraw(uint256 amount)',
+  'function airdrop(address[], uint256[])',
+  'function airdropComplete() view returns (bool)',
   // Governance
   'function createProposal(address targetWallet, string description)',
   'function vote(uint256 pid, bool support)',

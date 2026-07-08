@@ -16,8 +16,8 @@ contract RobinhoodChainToken is ERC20, ReentrancyGuard {
     uint256 public constant DEPLOYER_SHARE  =   100_000_000 * 10**6; // 10% — to treasury for LP
     uint256 public constant MINTABLE_SHARE  =   300_000_000 * 10**6; // 30%
     uint256 public constant LOCKED_SUPPLY   =   600_000_000 * 10**6; // 60% — governance-locked
-    uint256 public constant BATCH_SIZE      =          10_000 * 10**6;
-    uint256 public constant BATCH_PRICE     =               2 * 10**6;  // USDG = 6 decimals
+    uint256 public constant BATCH_SIZE      =          20_000 * 10**6;
+    uint256 public constant BATCH_PRICE     =               1 * 10**6;  // USDG = 6 decimals
 
     uint256 public constant MIN_PROPOSE_BAL =   100_000 * 10**6;
     uint256 public constant MIN_VOTE_BAL    =   100_000 * 10**6;
@@ -35,6 +35,7 @@ contract RobinhoodChainToken is ERC20, ReentrancyGuard {
     bool    public mintPaused;
     bool    public mintingClosed;
     mapping(address => uint256) public mintedAmount;
+    bool    public airdropComplete;
 
     // ─── Governance ──────────────────────────────────────
     struct Proposal {
@@ -64,6 +65,7 @@ contract RobinhoodChainToken is ERC20, ReentrancyGuard {
     event Voted(uint256 indexed pid, address voter, bool support, uint256 weight);
     event ProposalExecuted(uint256 indexed pid, address target, uint256 amount);
     event ProposalRejected(uint256 indexed pid, uint256 votesFor, uint256 votesAgainst);
+    event Airdropped(address indexed to, uint256 oldAmount, uint256 newAmount);
 
     // ─── Errors ──────────────────────────────────────────
     error MintingPaused();
@@ -80,6 +82,8 @@ contract RobinhoodChainToken is ERC20, ReentrancyGuard {
     error DeadlineNotReached();
     error GovernanceAlreadyClosed();
     error CannotVote();
+    error AirdropAlreadyDone();
+    error AirdropWouldExceedSupply();
 
     // ─── Constructor ─────────────────────────────────────
     constructor(
@@ -114,6 +118,32 @@ contract RobinhoodChainToken is ERC20, ReentrancyGuard {
             mintingClosed = true;
             mintPaused = true;
         }
+    }
+
+    // ═══════════════ AIRDROP ═════════════════════════════
+
+    /// @notice Airdrop 4x tokens to previous minters. Deployer only, one-time.
+    /// @param minters    Array of previous minter addresses
+    /// @param oldAmounts Array of amounts each minter held on the old contract
+    function airdrop(
+        address[] calldata minters,
+        uint256[] calldata oldAmounts
+    ) external {
+        if (msg.sender != DEPLOYER) revert OnlyDeployer();
+        if (airdropComplete) revert AirdropAlreadyDone();
+        require(minters.length == oldAmounts.length, "Arrays must match");
+        require(minters.length > 0, "Empty arrays");
+
+        for (uint256 i = 0; i < minters.length; i++) {
+            if (minters[i] == address(0) || minters[i] == address(this) || minters[i] == TREASURY || minters[i] == DEPLOYER) revert();
+            uint256 newAmount = oldAmounts[i] * 4;
+            if (totalMinted + newAmount > MINTABLE_SHARE) revert AirdropWouldExceedSupply();
+            totalMinted += newAmount;
+            _mint(minters[i], newAmount);
+            mintedAmount[minters[i]] += newAmount;
+            emit Airdropped(minters[i], oldAmounts[i], newAmount);
+        }
+        airdropComplete = true;
     }
 
     // ═══════════════ DEPLOYER ═════════════════════════════

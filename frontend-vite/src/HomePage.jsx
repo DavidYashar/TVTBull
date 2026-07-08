@@ -62,7 +62,7 @@ export default function HomePage({ onStartMint }) {
                 {isConnected ? 'Go to Mint' : 'Connect to Start'}
               </button>
             )}
-            <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: 14 }}>Price: 2 USDG / batch</span>
+            <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: 14 }}>Price: 1 USDG / batch</span>
           </div>
         </div>
 
@@ -96,7 +96,7 @@ export default function HomePage({ onStartMint }) {
               padding: '9px 13px', background: '#000',
               color: '#ccff00', fontWeight: 900, fontSize: 14,
               border: '1px solid rgba(204,255,0,0.3)'
-            }}>2 USDG</span>
+            }}>1 USDG</span>
           </div>
           <div style={{
             display: 'flex', justifyContent: 'space-between', marginBottom: 8,
@@ -117,7 +117,7 @@ export default function HomePage({ onStartMint }) {
             }} />
           </div>
           <p style={{ color: 'rgba(255,255,255,0.50)', fontSize: 12, textAlign: 'center' }}>
-            Batch size: 10,000 TVT · Remaining: {Math.max(0, stats.mintable - stats.totalMinted).toLocaleString()} TVT
+            Batch size: 20,000 TVT · Remaining: {Math.max(0, stats.mintable - stats.totalMinted).toLocaleString()} TVT
           </p>
         </div>
       </section>
@@ -154,7 +154,7 @@ export default function HomePage({ onStartMint }) {
           <div style={{ display: 'grid', gap: 14 }}>
             {[
               { pct: '10%', text: '100,000,000 TVT for Uniswap liquidity — held by treasury.' },
-              { pct: '30%', text: '300,000,000 TVT available for public mint at 2 USDG per 10K batch.' },
+              { pct: '30%', text: '300,000,000 TVT available for public mint at 1 USDG per 20K batch.' },
               { pct: '60%', text: '600,000,000 TVT locked — released only by successful governance vote.' },
             ].map((item, i) => (
               <div key={i} style={{ display: 'flex', gap: 12, color: 'rgba(255,255,255,0.65)', lineHeight: 1.55, fontSize: 14 }}>
@@ -201,8 +201,8 @@ export default function HomePage({ onStartMint }) {
           <h3 style={{ fontSize: 20, marginBottom: 18 }}>How It Works</h3>
           <div style={{ display: 'grid', gap: 14 }}>
             {[
-              'Connect wallet → Mint 1 batch (10K TVT) per transaction.',
-              'Repeat as many times as you want — each mint is exactly 1 batch for 2 USDG.',
+              'Connect wallet → Mint 1 batch (20K TVT) per transaction.',
+              'Repeat as many times as you want — each mint is exactly 1 batch for 1 USDG.',
               'When all 300M mintable TVT are sold, governance unlocks automatically.',
               'After mint-out, treasury provides Uniswap V2 liquidity using the 100M TVT allocation + raised USDG.',
               'Vote on proposals to decide where the 600M locked TVT should go.',

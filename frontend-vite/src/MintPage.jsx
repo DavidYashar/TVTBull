@@ -72,7 +72,7 @@ export default function MintPage() {
 
       // Query ALL Minted events to get latest tx per address
       const currentBlock = await readProvider.getBlockNumber()
-      const deployBlock = 3491683
+      const deployBlock = 4464857
       const chunkSize = 5000
       const txMap = {}
       for (let from = deployBlock; from < currentBlock; from += chunkSize) {
@@ -123,10 +123,10 @@ export default function MintPage() {
   return (
     <div className="landing-card">
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 20 }}>
-        <div className="stat-box"><span className="stat-box-label">Price / Batch</span><span className="stat-box-value">2 USDG</span></div>
-        <div className="stat-box"><span className="stat-box-label">Tokens / Batch</span><span className="stat-box-value">10,000 TVT</span></div>
+        <div className="stat-box"><span className="stat-box-label">Price / Batch</span><span className="stat-box-value">1 USDG</span></div>
+        <div className="stat-box"><span className="stat-box-label">Tokens / Batch</span><span className="stat-box-value">20,000 TVT</span></div>
         <div className="stat-box"><span className="stat-box-label">Global Minted</span><span className="stat-box-value">{stats.totalMinted.toLocaleString()} TVT</span></div>
-        <div className="stat-box"><span className="stat-box-label">Total Batches</span><span className="stat-box-value">{Math.floor(stats.totalMinted / 10_000).toLocaleString()}</span></div>
+        <div className="stat-box"><span className="stat-box-label">Total Batches</span><span className="stat-box-value">{Math.floor(stats.totalMinted / 20_000).toLocaleString()}</span></div>
       </div>
 
       <div style={{ marginBottom: 16 }}>
@@ -137,8 +137,8 @@ export default function MintPage() {
       </div>
 
       <div className="summary-box">
-        <div className="summary-row"><span>Receive</span><span>10,000 TVT</span></div>
-        <div className="summary-row"><span>Cost</span><span>2.00 USDG</span></div>
+        <div className="summary-row"><span>Receive</span><span>20,000 TVT</span></div>
+        <div className="summary-row"><span>Cost</span><span>1.00 USDG</span></div>
       </div>
 
       <button className="action-btn mint-btn" disabled={!canMint || minting} onClick={mint}>
@@ -174,7 +174,7 @@ export default function MintPage() {
                       <td className="rank">{(page - 1) * PER_PAGE + i + 1}</td>
                       <td className="addr">{h.address.slice(0, 6)}...{h.address.slice(-4)}</td>
                       <td>{h.balance.toLocaleString()}</td>
-                      <td>{Math.floor(h.balance / 10_000)}</td>
+                      <td>{Math.floor(h.balance / 20_000)}</td>
                       <td>{stats.mintableTotal > 0 ? (h.balance / stats.mintableTotal * 100).toFixed(3) : '0.000'}%</td>
                       <td>{h.txHash ? <a href={`${EXPLORER_URL}/tx/${h.txHash}`} target="_blank" rel="noreferrer" style={{ color: 'var(--gold)', textDecoration: 'none', fontSize: 12 }}>View</a> : '-'}</td>
                     </tr>

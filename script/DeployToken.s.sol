@@ -17,11 +17,14 @@ contract DeployToken is Script {
         console.log("USDG:", usdc);
         console.log("Name:", name);
         console.log("Symbol:", symbol);
+        console.log("Batch: 20,000 TVT for 1 USDG");
 
         vm.startBroadcast(deployerKey);
         RobinhoodChainToken token = new RobinhoodChainToken(treasury, usdc, name, symbol);
         vm.stopBroadcast();
 
         console.log("Deployed to:", address(token));
+        console.log("");
+        console.log("Next: run script/Airdrop.s.sol to airdrop to old minters");
     }
 }

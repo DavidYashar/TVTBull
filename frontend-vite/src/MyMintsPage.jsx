@@ -27,7 +27,7 @@ export default function MyMintsPage() {
       // Query Minted events from deploy block
       const filter = token.filters.Minted(address)
       const currentBlock = await readProvider.getBlockNumber()
-      const deployBlock = 3491683
+      const deployBlock = 4464857
       const chunkSize = 5000
       let totalMinted = 0, totalSpent = 0
       for (let from = deployBlock; from < currentBlock; from += chunkSize) {
@@ -47,7 +47,7 @@ export default function MyMintsPage() {
       setData({
         balance: balanceNum.toLocaleString(),
         minted: totalMinted.toLocaleString(),
-        batches: Math.floor(totalMinted / 10_000),
+        batches: Math.floor(totalMinted / 20_000),
         spent: totalSpent.toFixed(2),
         percent: mintableNum > 0 ? (totalMinted / mintableNum * 100).toFixed(4) : '0',
       })
